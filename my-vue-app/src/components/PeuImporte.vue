@@ -1,20 +1,9 @@
 <template>
   <div>
-    <input type="text" v-model="collection" />
-    <input type="text" v-model="cardName"/>
     <input type="text" v-model="pkmnName"/>
     <table>
-      <tr v-for="card in collectionCards" :key="card.name">
-        <td>{{ card.cardId }}</td>
-        <td>{{ card.name }}</td>
-        <td>{{ card.text }}</td>
-      </tr>
-    </table>
-    <table>
       <tr>
-        <td>{{ selectedCard?.cardId }}</td>
-        <td>{{ selectedCard?.name }}</td>
-        <td>{{ selectedCard?.text }}</td>
+        <td>{{ pkmnName.name }}</td>
       </tr>
     </table>
   </div>
@@ -27,8 +16,7 @@ import axios from 'axios';
 export default defineComponent({
   setup() {
     const cards = ref({});
-    const collection = ref('');
-    const cardName = ref('');
+    const pkmnName = ref('');
 
     axios
       .get('https://pokeapi.co/api/v2/pokemon/')
@@ -41,20 +29,19 @@ export default defineComponent({
 
     return {
       cards,
-      cardName,
-      collection,
+      pkmnName,
     };
   },
-  computed: {
+  /*computed: {
     collectionCards() {
       // {Basic: [], Classic: [], AutreCollection: [] }
       // [{cardId, name}, {cardId, name}, {cardId, name}]
       return this.cards[this.collection]?.slice(0, 10);
     },
     selectedCard() {
-      return this.collectionCards?.find(card => card.name.toLowerCase() === this.cardName.toLowerCase());
+      return this.collectionCards?.find(card => card.name.toLowerCase() === this.pkmnName.toLowerCase());
     }
-  },
+  },*/
 });
 </script>
 
