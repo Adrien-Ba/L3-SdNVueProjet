@@ -5,9 +5,17 @@
       <tr>{{listeNomPkmn?.name}}</tr>
       <tr>{{listeNomPkmn?.url}}</tr>
     </table>
-    {{ cards }}
     <button @click="description">Toggle</button>
-    {{ pokemonDesc }}
+    <h1>{{ pokemonDesc?.name }}</h1>
+    <img :src="sprite"/>
+     <table>
+      <tr>{{ pokemonDesc?.id }}</tr>
+      <tr>{{ pokemonDesc?.height}}</tr>
+      <tr>{{ pokemonDesc?.weight}}</tr>
+      <tr>{{ tmp }}</tr>
+      <tr>{{ genera }}</tr>
+      <tr>{{ type }}</tr>
+    </table>
   </div>
 </template>
 
@@ -19,10 +27,8 @@ export default defineComponent({
   setup() {
     const cards = ref({});
     const nomPkmn = ref('');
-    const pokemonDesc = ref({});
-
     axios
-      .get('https://pokeapi.co/api/v2/pokemon?limit=100')
+      .get('https://pokeapi.co/api/v2/pokemon?limit=600')
       .then(function (response) {
         cards.value = response.data;
       })
@@ -34,8 +40,16 @@ export default defineComponent({
     return {
       cards,
       nomPkmn,
-      pokemonDesc,
     };
+  },
+  data: function() {
+    return {
+      pokemonDesc: Object,
+      sprite: String,
+      genera: String,
+      tmp: Object,
+      type: String,
+    }
   },
   computed: {
     collectionCards() {
@@ -44,21 +58,41 @@ export default defineComponent({
     listeNomPkmn() {
       return this.collectionCards?.find(card => card.name.toLowerCase() === this.nomPkmn.toLowerCase());
     },
+  },
+  methods: {
     description() {
       const pokemon = ref({});
+      const spriteTmp = ref('');
+      const speciesTmp = ref('');
+      const generaTmp = ref('');
+      const typeTmp = ref('');
 
       axios
       .get(this.listeNomPkmn?.url)
       .then(function (response) {
         pokemon.value = response.data;
+        spriteTmp.value = response.data.sprites.other?.['official-artwork'].front_default;
+        speciesTmp.value = response.data.species.url;
+        typeTmp.value = response.data.types?.[0].type.name;
+        axios
+      .get(speciesTmp.value)
+      .then(function (response) {
+        generaTmp.value = response.data.genera?.['3'].genus;
       })
       .catch(function (error) {
         console.error(error);
       });
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+      this.sprite = spriteTmp;
       this.pokemonDesc = pokemon;
-      console.log(this.pokemonDesc); 
-    }
-  }
+      this.tmp = speciesTmp;
+      this.genera = generaTmp;
+      this.type = typeTmp;
+    },
+  },
 });
 </script>
 
