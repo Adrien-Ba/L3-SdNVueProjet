@@ -1,10 +1,18 @@
 <template>
   <div>
-    <PeuImporte/>
+    <p>
+
+    <router-link to="/peuimporte">Aller à peuimporte</router-link>
+    <router-link to="/helloworld">Aller à helloworld</router-link>
+  </p>
+    <router-view/>
   </div>
 </template>
 
+
+
 <script lang="ts">
+
 import { defineComponent } from 'vue'
 import PeuImporte from './components/PeuImporte.vue'
 
@@ -14,7 +22,10 @@ export default defineComponent({
     PeuImporte,
   }
 })
+
 </script>
+
+
 
 <style>
 #app {
