@@ -13,6 +13,12 @@
 
 <script lang="ts">
 
+
+import {useStore} from 'vuex';
+
+import store from './store/index'
+
+
 import { defineComponent } from 'vue'
 import PeuImporte from './components/PeuImporte.vue'
 
@@ -22,6 +28,8 @@ export default defineComponent({
     PeuImporte,
   }
 })
+
+
 
 </script>
 
