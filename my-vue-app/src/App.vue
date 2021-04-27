@@ -2,9 +2,9 @@
   <div>
     <p>
 
-    <router-link to="/peuimporte">Aller à peuimporte</router-link>
-    <router-link to="/helloworld">Aller à helloworld</router-link>
-    <router-link to="/accueil">Aller à helloworld</router-link>
+    <router-link to="/peuimporte">Aller à peuimporte   </router-link>
+    <router-link to="/helloworld">Aller à helloworld   </router-link>
+    <router-link to="/accueil">Aller à l'accueil   </router-link>
 
 
   </p>
@@ -18,8 +18,6 @@
 
 
 import {useStore} from 'vuex';
-
-import store from './store/index'
 
 
 import { defineComponent } from 'vue'

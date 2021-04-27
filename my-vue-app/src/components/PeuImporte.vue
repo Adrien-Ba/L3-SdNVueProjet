@@ -60,7 +60,7 @@ export default defineComponent({
     },
   },
   methods: {
-    description() {
+    async description() {
       const pokemon = ref({});
       const spriteTmp = ref('');
       const speciesTmp = ref('');
