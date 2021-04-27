@@ -5,17 +5,20 @@
       <tr>{{listeNomPkmn?.name}}</tr>
       <tr>{{listeNomPkmn?.url}}</tr>
     </table>
-    <button @click="description">Toggle</button>
-    <h1>{{ pokemonDesc?.name }}</h1>
-    <img :src="sprite"/>
-     <table>
-      <tr>{{ pokemonDesc?.id }}</tr>
-      <tr>{{ pokemonDesc?.height}}</tr>
-      <tr>{{ pokemonDesc?.weight}}</tr>
-      <tr>{{ tmp }}</tr>
-      <tr>{{ genera }}</tr>
-      <tr>{{ type }}</tr>
-    </table>
+    <button @click="description">Afficher</button>
+    <span v-if="showInfo">
+      <h1>{{ pokemonDesc?.name }}</h1>
+      <table>
+        <tr>
+          <td>Id : {{ pokemonDesc?.id }}</td>
+          <td>Taille : {{ pokemonDesc?.height}}</td>
+          <td>Poids : {{ pokemonDesc?.weight}}</td>
+          <td>Genre : {{ genera }}</td>
+          <td>Type : {{ type }}</td>
+        </tr>
+      </table>
+      <img :src="sprite"/>
+    </span>
   </div>
 </template>
 
@@ -28,7 +31,7 @@ export default defineComponent({
     const cards = ref({});
     const nomPkmn = ref('');
     axios
-      .get('https://pokeapi.co/api/v2/pokemon?limit=600')
+      .get('https://pokeapi.co/api/v2/pokemon?limit=898')
       .then(function (response) {
         cards.value = response.data;
       })
@@ -49,6 +52,7 @@ export default defineComponent({
       genera: String,
       tmp: Object,
       type: String,
+      showInfo: false,
     }
   },
   computed: {
@@ -91,6 +95,7 @@ export default defineComponent({
       this.tmp = speciesTmp;
       this.genera = generaTmp;
       this.type = typeTmp;
+      this.showInfo = true;
     },
   },
 });
