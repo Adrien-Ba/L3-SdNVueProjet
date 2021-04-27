@@ -4,6 +4,9 @@
 
     <router-link to="/peuimporte">Aller à peuimporte</router-link>
     <router-link to="/helloworld">Aller à helloworld</router-link>
+    <router-link to="/accueil">Aller à helloworld</router-link>
+
+
   </p>
     <router-view/>
   </div>
