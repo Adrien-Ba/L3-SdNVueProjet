@@ -1,19 +1,8 @@
 <template>
   <div>
-    <input type="test" v-model="nomPkmn"/>
-    <table>
-      <tr>{{listeNomPkmn?.name}}</tr>
-      <tr>{{listeNomPkmn?.url}}</tr>
-    </table>
-    <button @click="description">Afficher info</button>
-    <span v-if="showInfo">
-        <h1>{{ pokemonDesc?.name }}</h1>
-        <img :src="sprite"/>
-        <table>
-        <tr>{{ pokemonDesc?.id }}</tr>
-        <!--<tr>{{ type }}</tr>-->
-        </table>
-    </span>
+      <ul>
+        <li v-for="item in collection" :key="item.id">{{ item.id }} {{item.name}} <img :src="item.sprite"/></li>
+      </ul>
   </div>
 </template>
 
@@ -23,62 +12,33 @@ import axios from 'axios';
 
 export default defineComponent({
   setup() {
-    const cards = ref({});
-    const nomPkmn = ref('');
-    axios
-      .get('https://pokeapi.co/api/v2/pokemon?limit=898')
-      .then(function (response) {
-        cards.value = response.data;
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
+    const collection = ref([]);
+ 
 
 
-    return {
-      cards,
-      nomPkmn,
-    };
-  },
-  data: function() {
-    return {
-      pokemonDesc: Object,
-      sprite: String,
-      genera: String,
-      tmp: Object,
-      type: String,
-      showInfo: false,
-    }
-  },
-  computed: {
-    collectionCards() {
-      return this.cards?.['results'];
-    },
-    listeNomPkmn() {
-      return this.collectionCards?.find(card => card.name.toLowerCase() === this.nomPkmn.toLowerCase());
-    },
-  },
-  methods: {
-    description() {
-      const pokemon = ref({});
-      const spriteTmp = ref('');
+    for(let i = 1; i < 11; i++) {
+            axios
+            .get('https://pokeapi.co/api/v2/pokemon/'+i)
+            .then(function (response) {
+                const newPokemon = {id:null,name:null,sprite:null};
+                newPokemon.sprite = response.data.sprites.other?.['official-artwork'].front_default;
+                newPokemon.name = response.data.name;
+                newPokemon.id= response.data.id;
+                collection.value.push(newPokemon);
+            })
+            .catch(function (error) {
+                console.error(error);
+            });
 
-      axios
-      .get(this.listeNomPkmn?.url)
-      .then(function (response) {
-        pokemon.value = response.data;
-        spriteTmp.value = response.data.sprites.other?.['official-artwork'].front_default;
-        //typeTmp.value = response.data.types?.[0].type.name;
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
-      this.sprite = spriteTmp;
-      this.pokemonDesc = pokemon;
+        
+        console.log(collection);
       //this.type = typeTmp;
+    }
 
-      this.showInfo = true;
-    },
+
+    return {
+      collection,
+    };
   },
 });
 </script>
