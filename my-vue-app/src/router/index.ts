@@ -2,13 +2,9 @@ import {createRouter, createWebHashHistory} from 'vue-router';
 import PeuImporte from '../components/Peuimporte.vue';
 import HelloWorld from '../components/HelloWorld.vue';
 import Accueil from '../components/Accueil.vue';
+import Pokemon from '../components/Pokemon.vue';
 
 const routes = [
-    {
-        path: '/peuimporte/:id',
-        name: 'peuimporte',
-        component: PeuImporte,
-    },
     {
         path: '/peuimporte2',
         component: PeuImporte,
@@ -20,6 +16,10 @@ const routes = [
     {
         path: '/accueil',
         component: Accueil,
+    },
+    {
+        path: '/pokemon',
+        component: Pokemon,
     }
 ];
 

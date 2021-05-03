@@ -59,7 +59,7 @@ export default defineComponent({
   props: {
     propid:{
       type: Number,
-       default: 1
+       default: 2
        }
   },
   computed: {
