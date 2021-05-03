@@ -1,16 +1,21 @@
 <template>
   <div>
-      <ul>
-        <li v-for="item in store.getters.getCollection" :key="item.id">{{ item.id }} {{item.name}} <img :src="item.sprite"/><router-link :to="{ name: 'pokemon', params: {id: item.id } }">more..</router-link></li>
-      </ul>
-      <button @click="suivant">Suivant</button>
+    <ul>
+      <li v-for="item in store.getters.getCollection" :key="item.id">
+        {{ item.id }} {{ item.name }} <img :src="item.sprite" /><router-link
+          :to="{ name: 'pokemon', params: { id: item.id } }"
+          >more..</router-link
+        >
+      </li>
+    </ul>
+    <button @click="suivant">Suivant</button>
   </div>
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue';
-import axios from 'axios';
-import { useStore } from 'vuex'
+import { defineComponent, ref } from "vue";
+import axios from "axios";
+import { useStore } from "vuex";
 
 export default defineComponent({
   setup() {
@@ -25,38 +30,49 @@ export default defineComponent({
     };
   },
   methods: {
-    async aled(store,nbr) {
-      for(let i = nbr+1; i < nbr+11; i++) {
-           await axios
-                  .get('https://pokeapi.co/api/v2/pokemon/'+i)
-                  .then(function (response) {
-                      const newPokemon = {id:null,name:null,sprite:null};
-                      newPokemon.sprite = response.data.sprites.other?.['official-artwork'].front_default;
-                      newPokemon.name = response.data.name;
-                      newPokemon.id= response.data.id;
-                      console.log(newPokemon)
-                      store.commit('ajout',newPokemon);               
-            })
-            .catch(function (error) {
-                console.error(error);
-            });
+    async aled(store, nbr) {
+      for (let i = nbr + 1; i < nbr + 11; i++) {
+        const newPokemon = { id: null, name: null, sprite: null };
+        await axios
+          .get("https://pokeapi.co/api/v2/pokemon/" + i)
+          .then(function (response) {
+            newPokemon.sprite =
+              response.data.sprites.other?.["official-artwork"].front_default;
+            newPokemon.height = reponse.data.height;
+            newPokemon.weight = reponse.data.weight;
+            newPokemon.types = reponse.data.types;
+            newPokemon.id = response.data.id;
+          })
+          .catch(function (error) {
+            console.error(error);
+          });
+        await axios
+          .get("https://pokeapi.co/api/v2/pokemon-species/" + i)
+          .then(function (response) {
+            newPokemon.name = response.data.names[4].name;
+            newPokemon.name = response.data.genera[3].genus;
+          })
+          .catch(function (error) {
+            console.error(error);
+          });
 
-        
+        store.commit("ajout", newPokemon);
         //console.log(collection);
-        
-        console.log("store"+store.getters.getCollection)
-      //this.type = typeTmp;
-    }
+
+        console.log("store" + store.getters.getCollection);
+        //this.type = typeTmp;
+      }
     },
     suivant() {
       this.nbr += 10;
       this.aled(this.store, this.nbr);
-    }
+    },
   },
 
   beforeMount() {
+    console.log(this.nbr);
     this.aled(this.store, this.nbr);
-  }
+  },
 });
 </script>
 
