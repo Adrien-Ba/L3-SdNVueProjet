@@ -1,6 +1,6 @@
 <template>
   <p>{{count}}</p>
-  <button @click="description">Toggle</button>
+  <button @click="description">Inrementer</button>
 </template>
 
 <script lang="ts">
