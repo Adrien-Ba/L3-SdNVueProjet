@@ -1,5 +1,6 @@
 <template>
   <div>
+    <p>{{propid}}</p>
     <input type="test" v-model="nomPkmn"/>
     <table>
       <tr>{{listeNomPkmn?.name}}</tr>
@@ -54,6 +55,12 @@ export default defineComponent({
       type: String,
       showInfo: false,
     }
+  },
+  props: {
+    propid:{
+      type: Number,
+       default: 1
+       }
   },
   computed: {
     collectionCards() {
