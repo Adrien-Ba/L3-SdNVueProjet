@@ -1,13 +1,17 @@
 <template>
-  <div>
-    <ul>
-      <li v-for="item in store.getters.getCollection" :key="item.id">
-        {{ item.id }} {{ item.name }} <img :src="item.sprite" /><router-link
-          :to="{ name: 'pokemon', params: { id: item.id } }"
-          >more..</router-link
-        >
-      </li>
-    </ul>
+  <div class="container my-5">
+
+    <div class="row">
+    <div v-for="item in store.getters.getCollection" :key="item.id" class="card col-sm-3" >
+      <img :src="item.sprite" class="card-img-top"/>
+      <div class="card-body">
+        <h5 class="card-title">{{ item.id }} : {{ item.name }}</h5>
+        <router-link class="btn btn-primary" :to="{ name: 'pokemon', params: { id: item.id } }">Détails ...</router-link>
+      </div>
+    </div>
+    </div>
+
+
     <button @click="suivant">Suivant</button>
   </div>
 </template>

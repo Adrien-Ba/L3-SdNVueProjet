@@ -1,15 +1,58 @@
 <template>
-  <div>
-    <p>
+<div>
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <a class="navbar-brand" href="#">Pokédex</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <router-link to="/peuimporte">Aller à peuimporte   </router-link>
-    <router-link to="/helloworld">Aller à helloworld   </router-link>
-    <router-link to="/accueil">Aller à l'accueil   </router-link>
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item ">
+            <router-link class="nav-link" to="/peuimporte">Peu Importe</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/helloworld">Hello World</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/accueil">Accueil</router-link>
+          </li>
+          <!--DROPDOWN
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+          -->
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Nom de pokémon ..." aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button><!--A Implémenter-->
+        </form>
+      </div>
+    </nav>
+
+<div>
+  <!--
+  <div class="container">
+    <div class="row" >
+
+      <div class="col"><button type="button" class="btn btn-secondary"><router-link to="/peuimporte">Aller à peuimporte</router-link></button></div>
+      <div class="col"><button type="button" class="btn btn-secondary"><router-link to="/helloworld">Aller à helloworld   </router-link></button></div>
+      <div class="col"><button type="button" class="btn btn-secondary"><router-link to="/accueil">Aller à l'accueil   </router-link></button></div>
 
 
-  </p>
+    </div>
+  </div>
+  -->
+  <div class="container">
     <router-view/>
   </div>
+  </div>
+</div>
 </template>
 
 
