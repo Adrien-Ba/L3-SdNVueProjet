@@ -38,9 +38,9 @@ export default defineComponent({
           .then(function (response) {
             newPokemon.sprite =
               response.data.sprites.other?.["official-artwork"].front_default;
-            newPokemon.height = reponse.data.height;
-            newPokemon.weight = reponse.data.weight;
-            newPokemon.types = reponse.data.types;
+            newPokemon.height = response.data.height;
+            newPokemon.weight = response.data.weight;
+            newPokemon.types = response.data.types;
             newPokemon.id = response.data.id;
           })
           .catch(function (error) {
@@ -50,7 +50,7 @@ export default defineComponent({
           .get("https://pokeapi.co/api/v2/pokemon-species/" + i)
           .then(function (response) {
             newPokemon.name = response.data.names[4].name;
-            newPokemon.name = response.data.genera[3].genus;
+            newPokemon.genus = response.data.genera[3].genus;
           })
           .catch(function (error) {
             console.error(error);
