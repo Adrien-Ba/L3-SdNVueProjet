@@ -7,9 +7,13 @@
   <p><button @click="collect">Test</button></p>
   <p>
       <ul>
-          <li>Taille du pokémon : {{store.getters.getCollection[msg].heigth}}</li>
-          <li>Poids du pokémon : {{store.getters.getCollection[msg].weight}}</li>
+          <li>Id du pokémon : {{store.getters.getCollection[msg].id}}</li>
+          <li>Taille du pokémon : {{store.getters.getCollection[msg].height}}0 cm</li>
+          <li>Poids du pokémon : {{store.getters.getCollection[msg].weight}}0 g</li>
           <li v-for="item in store.getters.getCollection.types" :key="item.type">{{item.type}}</li>
+          <li>Genre du pokémon : {{store.getters.getCollection[msg].genus}}</li>
+          <li>Génération du pokémon : {{store.getters.getCollection[msg].generation}}</li>
+          <li>Habitat du pokémon : {{store.getters.getCollection[msg].habitat}}</li>
       </ul>
   </p>
   </div>
@@ -44,7 +48,7 @@ export default defineComponent({
     this.msg =  this.$route.params.id -1
     },
     collect () {
-        console.log(this.store.getters.getCollection[this.msg].sprite)
+        console.log(this.store.getters.getCollection[this.msg])
     }
   }
 });
