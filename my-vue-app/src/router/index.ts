@@ -5,12 +5,7 @@ import Accueil from '../components/Accueil.vue';
 
 const routes = [
     {
-        path: '/peuimporte/:id',
-        name: 'peuimporte',
-        component: PeuImporte,
-    },
-    {
-        path: '/peuimporte2',
+        path: '/peuimporte',
         component: PeuImporte,
     },
     {

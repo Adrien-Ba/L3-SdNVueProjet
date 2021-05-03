@@ -2,7 +2,7 @@
   <div>
     <p>
 
-    <router-link to="/peuimporte2">Aller à peuimporte   </router-link>
+    <router-link to="/peuimporte">Aller à peuimporte   </router-link>
     <router-link to="/helloworld">Aller à helloworld   </router-link>
     <router-link to="/accueil">Aller à l'accueil   </router-link>
 
