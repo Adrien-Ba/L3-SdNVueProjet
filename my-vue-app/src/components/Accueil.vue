@@ -51,6 +51,8 @@ export default defineComponent({
           .then(function (response) {
             newPokemon.name = response.data.names[4].name;
             newPokemon.genus = response.data.genera[3].genus;
+            newPokemon.generation = response.data.generation.name;
+            newPokemon.habitat = response.data.habitat.name;
           })
           .catch(function (error) {
             console.error(error);
