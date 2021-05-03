@@ -1,6 +1,7 @@
 <template>
   <div>
     <input type="test" v-model="nomPkmn"/>
+    
     <table>
       <tr>{{listeNomPkmn?.name}}</tr>
       <tr>{{listeNomPkmn?.url}}</tr>
