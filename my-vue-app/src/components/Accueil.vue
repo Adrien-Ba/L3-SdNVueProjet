@@ -1,7 +1,7 @@
 <template>
   <div>
       <ul>
-        <li v-for="item in store.getters.getCollection" :key="item.id">{{ item.id }} {{item.name}} <img :src="item.sprite"/><router-link :to="{ name: 'peuimporte', params: {id: item.id } }">more..</router-link></li>
+        <li v-for="item in store.getters.getCollection" :key="item.id">{{ item.id }} {{item.name}} <img :src="item.sprite"/><router-link :to="{ name: 'pokemon', params: {id: item.id } }">more..</router-link></li>
       </ul>
       <button @click="suivant">Suivant</button>
   </div>

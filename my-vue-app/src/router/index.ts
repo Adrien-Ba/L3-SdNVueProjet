@@ -6,7 +6,7 @@ import Pokemon from '../components/Pokemon.vue';
 
 const routes = [
     {
-        path: '/peuimporte2',
+        path: '/peuimporte',
         component: PeuImporte,
     },
     {
