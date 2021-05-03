@@ -6,15 +6,15 @@ const store = createStore({
   state () {
     return {
       count: 0,
-      collection = ref([])
+      collection: ref([])
     }
   },
   mutations: {
     increment (state) {
       state.count++
     },
-    ajout (state, collection) {
-      state.collection.push(collection)
+    ajout (state, newPokemon) {
+      state.collection.push(newPokemon)
     }
   },
   getters: {

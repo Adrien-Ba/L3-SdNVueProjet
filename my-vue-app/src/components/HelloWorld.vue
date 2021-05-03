@@ -1,6 +1,8 @@
 <template>
+  <div>
   <p>{{count}}</p>
   <button @click="description">Inrementer</button>
+  </div>
 </template>
 
 <script lang="ts">
@@ -27,6 +29,5 @@ export default defineComponent({
       this.$store.commit('increment')
     }
   }
-  
 })
 </script>
