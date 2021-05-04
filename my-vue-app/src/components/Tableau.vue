@@ -27,10 +27,6 @@
             </tr>
           </tbody>
         </table>
-        <li v-for="pokemon in collection" :key="pokemon">
-          {{ pokemon.id }} {{ pokemon.name }} {{ pokemon.nom }}
-          {{ pokemon.genus }}
-        </li>
       </div>
     </div>
   </div>
