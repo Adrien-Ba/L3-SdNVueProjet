@@ -36,7 +36,7 @@
         </div>
       </div>
 
-      <button @click="suivant">Suivant</button>
+      <button class="btn btn-primary" @click="suivant">Suivant</button>
     </div>
   </div>
 </template>
