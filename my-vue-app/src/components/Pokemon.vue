@@ -3,8 +3,18 @@
         <div class="jumbotron">
             <h1>{{store.getters.getCollection[msg].name}}</h1>
             <p><img :src="store.getters.getCollection[msg].sprite"></p>
-            <!--<p><button @click="collect">Test</button></p>-->
-           <li v-for="type in store.getters.getCollection[msg].types" :key="type.name">{{type.type.name}}</li>
+           <div class="row">
+             <div class="col">
+               <table class="table">
+              <tbody>
+                <tr>
+                  <th class="text-center">Type(s) :</th>
+                  <td v-for="type in store.getters.getCollection[msg].types" :key="type.name">{{type.type.name}}</td>
+                </tr>
+              </tbody>
+            </table>
+             </div>
+           </div>
             <div class="row">
             <div class="col-6">
             <table class="table">
