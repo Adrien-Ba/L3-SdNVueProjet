@@ -33,6 +33,10 @@ const routes = [
         name: 'recherche',
         component: Recherche,
     },
+    {
+        path: '/',
+        redirect: '/accueil',
+    }
 ];
 
 const router = createRouter({

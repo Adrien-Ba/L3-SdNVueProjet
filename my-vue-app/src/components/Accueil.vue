@@ -52,7 +52,7 @@ export default defineComponent({
     };
   },
   methods: {
-    async aled(store, nbr) {
+    async cherche(store, nbr) {
       for (let i = nbr + 1; i < nbr + 11; i++) {
         const newPokemon = { id: null, name: null, sprite: null, types: [] };
         await axios
@@ -99,14 +99,14 @@ export default defineComponent({
       store.commit("ajoutNbr");
     },
     suivant() {
-      this.aled(this.store, this.store.getters.getNbr);
+      this.cherche(this.store, this.store.getters.getNbr);
     },
   },
 
   created() {
     console.log(this.store.getters.getNbr);
     if(this.store.getters.getNbr==0) {
-      this.aled(this.store, this.store.getters.getNbr);
+      this.cherche(this.store, this.store.getters.getNbr);
     }
   },
 });

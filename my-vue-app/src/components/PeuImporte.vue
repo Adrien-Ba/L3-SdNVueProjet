@@ -1,5 +1,7 @@
 <template>
   <div>
+    <br/>
+    <p>Page de dev : affichage des données d'un pokémon a partir de son nom (anglais en minuscules)</p>
     <input type="test" v-model="nomPkmn"/>
     
     <table>

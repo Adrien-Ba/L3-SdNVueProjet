@@ -103,10 +103,15 @@ export default defineComponent({
           newPokemon.genus = response.data.genera[3].genus;
           newPokemon.generation = response.data.generation.name;
           newPokemon.location = response.data.habitat.name;
+
+         
         })
         .catch(function (error) {
           console.error(error);
         });
+        if(newPokemon.location != null) {
+
+        
         await axios
           .get("https://pokeapi.co/api/v2/pokemon-habitat/"+newPokemon.location)
           .then(function (response) {
@@ -115,11 +120,15 @@ export default defineComponent({
           .catch(function (error) {
             console.error(error);
           });
+        }
         this.pokemon = newPokemon;
+        
     },
      recupNom() {
-      this.nom = this.$route.params.id 
+      this.nom = this.$route.params.id
+      this.rechercher(this.nom)
     },
+
   },
   created() {
     this.recupNom();
@@ -127,7 +136,7 @@ export default defineComponent({
     this.rechercher(this.nom);
   },
   watch: {
-    $route: "recupNom",
+    '$route':"recupNom"
   },
 });
 </script>

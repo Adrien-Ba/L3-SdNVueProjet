@@ -9,15 +9,19 @@
 
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <router-link class="nav-link" to="/accueil">Accueil</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/tableau">Index</router-link>
+          </li>
           <li class="nav-item ">
             <router-link class="nav-link" to="/peuimporte">Peu Importe</router-link>
           </li>
           <li class="nav-item">
             <router-link class="nav-link" to="/helloworld">Hello World</router-link>
           </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/accueil">Accueil</router-link>
-          </li>
+          
           <!--DROPDOWN
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" hr_ef="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
@@ -77,8 +81,7 @@ export default defineComponent({
   },
   methods: {
     rechercher() {
-      this.$router.push('/recherche/'+this.nomPokemon);
-      this.nomPokemon = '';
+      this.$router.push('/recherche/'+this.nomPokemon.toLowerCase());
     },
     retourAccueil() {
       this.$router.push('/accueil');

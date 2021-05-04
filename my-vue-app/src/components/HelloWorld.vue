@@ -1,7 +1,9 @@
 <template>
   <div>
-  <p>{{count}}</p>
-  <button @click="description">Inrementer</button>
+    <br/>
+    <p>Page de dev : compteur</p>
+    <p>{{count}}</p>
+    <button @click="description">Inrementer</button>
   </div>
 </template>
 
