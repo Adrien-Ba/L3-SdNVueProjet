@@ -54,7 +54,7 @@ export default defineComponent({
   methods: {
     async aled(store, nbr) {
       for (let i = nbr + 1; i < nbr + 11; i++) {
-        const newPokemon = { id: null, name: null, sprite: null };
+        const newPokemon = { id: null, name: null, sprite: null, types: [] };
         await axios
           .get("https://pokeapi.co/api/v2/pokemon/" + i)
           .then(function (response) {
@@ -63,6 +63,8 @@ export default defineComponent({
             newPokemon.height = response.data.height;
             newPokemon.weight = response.data.weight;
             newPokemon.types = response.data.types;
+            console.log("type"+ response.data.types);
+            console.log("type"+ newPokemon.types[0].type.name);
             newPokemon.id = response.data.id;
           })
           .catch(function (error) {
@@ -74,7 +76,15 @@ export default defineComponent({
             newPokemon.name = response.data.names[4].name;
             newPokemon.genus = response.data.genera[3].genus;
             newPokemon.generation = response.data.generation.name;
-            newPokemon.habitat = response.data.habitat.name;
+            newPokemon.location = response.data.habitat.name;
+          })
+          .catch(function (error) {
+            console.error(error);
+          });
+          axios
+          .get("https://pokeapi.co/api/v2/pokemon-habitat/"+newPokemon.location)
+          .then(function (response) {
+            newPokemon.habitat = response.data.names[0].name;
           })
           .catch(function (error) {
             console.error(error);
