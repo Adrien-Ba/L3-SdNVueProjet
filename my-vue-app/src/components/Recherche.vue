@@ -1,8 +1,7 @@
 <template>
 <div>
-  <h1>{{this.pokemon.value.name }}</h1>
-  <p><img :src="this.pokemon.value.sprite" /></p>
-  <!--<p><button @click="collect">Test</button></p>-->
+  <h1>{{pokemon.name}}</h1>
+  <p><img :src="pokemon.sprite" /></p>
   </div>
 </template>
 
@@ -14,14 +13,17 @@ import { useStore } from "vuex";
 export default defineComponent({
   setup() {
     const store = useStore();
-    const pokemon = ref({});
-    const nom = "pikachu";
+    const nom = "dedenne";
 
     return {
       store,
       nom,
-      pokemon,
     };
+  },
+  data: function() {
+    return {
+      pokemon: { id: String, name: String, sprite: String},
+    }
   },
   methods: {
     async rechercher(nom) {
@@ -52,18 +54,17 @@ export default defineComponent({
         });
         this.pokemon = newPokemon;
     },
-  },
-
-  created() {
-    this.recupId();
-  },
-  watch: {
-    $route: "recupId",
-  },
-  methods: {
-    recupId() {
+     recupNom() {
       this.nom = this.$route.params.id 
     },
+  },
+  created() {
+    this.recupNom();
+    console.log(this.nom)
+    this.rechercher(this.nom);
+  },
+  watch: {
+    $route: "recupNom",
   },
 });
 </script>
