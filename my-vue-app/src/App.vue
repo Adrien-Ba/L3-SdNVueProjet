@@ -45,7 +45,7 @@
             class="form-control mr-sm-2"
             type="text"
             v-model="nomPokemon"
-            placeholder="Nom de pokémon ..."
+            placeholder="Nom / id de pokémon ..."
             aria-label="Search"
           />
           <button
