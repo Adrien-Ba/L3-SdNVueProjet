@@ -3,8 +3,18 @@
         <div class="jumbotron">
             <h1>{{pokemon.name}}</h1>
             <p><img :src="pokemon.sprite"></p>
-            <!--<p><button @click="collect">Test</button></p>-->
-           <li v-for="type in pokemon.types" :key="type.name">{{type.type.name}}</li>
+            <div class="row">
+             <div class="col">
+               <table class="table">
+              <tbody>
+                <tr>
+                  <th class="text-center">Type(s) :</th>
+                  <td v-for="type in pokemon.types" :key="type.name">{{type.type.name}}</td>
+                </tr>
+              </tbody>
+            </table>
+             </div>
+           </div>
             <div class="row">
             <div class="col-6">
             <table class="table">
@@ -33,7 +43,7 @@
                 </tr>
                 <tr>
                   <th class="text-center">Génération :</th>
-                  <td>{{pokemon.generation.toUpperCase()}}</td>
+                  <td>{{pokemon.generation}}</td>
                 </tr>
                 <tr>
                   <th class="text-center">Habitat :</th>

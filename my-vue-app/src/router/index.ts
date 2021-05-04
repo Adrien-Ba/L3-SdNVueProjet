@@ -4,6 +4,7 @@ import HelloWorld from '../components/HelloWorld.vue';
 import Accueil from '../components/Accueil.vue';
 import Pokemon from '../components/Pokemon.vue';
 import Recherche from '../components/Recherche.vue';
+import Tableau from '../components/Tableau.vue';
 
 const routes = [
     {
@@ -22,6 +23,10 @@ const routes = [
         path: '/pokemon/:id',
         name: 'pokemon',
         component: Pokemon,
+    },
+    {
+        path: '/tableau',
+        component: Tableau,
     },
     {
         path: '/recherche/:id',
