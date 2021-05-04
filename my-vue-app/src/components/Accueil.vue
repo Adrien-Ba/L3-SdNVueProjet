@@ -1,4 +1,21 @@
 <template>
+<div>
+  <main role="main " class="container">
+        <div class="jumbotron">
+            <h1>Bienvenue dans le Pokédex</h1>
+            <p>
+                Ce pokédex à été développé à l'aide du framework Vue js.<br/>
+                Il fait appel à l'api PokéApi. Les requêtes sont gérées avec Axios et les pokémon déjà chargés sont stockés dans un store. <br/>
+                Le site dispose d'une page d'accueil (celle-ci), une page qui apporte plus de détails sur un pokémon choisi, ainsi que la possibilité d'effecuter des recherches sur un pokémon en particulier.<br/>
+                Le front à été réalisé grace à Bootstrap. <br/>
+                Nous vous souhaitons une agréable visite.<br/>
+            </p>
+            <p>
+              Réalisé par Adrien Bassail et Henri Boulnois<br/>
+            </p>
+        </div>
+    </main>
+
   <div class="container my-5">
 
     <div class="row">
@@ -14,6 +31,7 @@
 
     <button @click="suivant">Suivant</button>
   </div>
+</div>
 </template>
 
 <script>

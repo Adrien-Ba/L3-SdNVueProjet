@@ -4,15 +4,49 @@
             <h1>{{store.getters.getCollection[msg].name}}</h1>
             <p><img :src="store.getters.getCollection[msg].sprite"></p>
             <!--<p><button @click="collect">Test</button></p>-->
-            <p class="lead">
-                    Id du pokémon : {{store.getters.getCollection[msg].id}}<br/>
-                    Taille du pokémon : {{store.getters.getCollection[msg].height}}0 cm<br/>
-                    Poids du pokémon : {{store.getters.getCollection[msg].weight}}0 g<br/>
+
                     <!--<li v-for="item in store.getters.getCollection.types" :key="item.type">{{item.type}}</li>-->
-                    Genre du pokémon : {{store.getters.getCollection[msg].genus}}<br/>
-                    Génération du pokémon : {{store.getters.getCollection[msg].generation}}<br/>
-                    Habitat du pokémon : {{store.getters.getCollection[msg].habitat}}<br/>
-            </p>
+
+            <div class="row">
+            <div class="col-6">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <th class="text-center">Id :</th>
+                  <td>{{store.getters.getCollection[msg].id}}</td>
+                </tr>
+                <tr>
+                  <th class="text-center">Taille :</th>
+                  <td>{{store.getters.getCollection[msg].height}}0 cm</td>
+                </tr>
+                <tr>
+                  <th class="text-center">Poids :</th>
+                  <td>{{store.getters.getCollection[msg].weight}}0 g</td>
+                </tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="col-6">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <th class="text-center">Genre :</th>
+                  <td>{{store.getters.getCollection[msg].id}}</td>
+                </tr>
+                <tr>
+                  <th class="text-center">Génération :</th>
+                  <td>{{store.getters.getCollection[msg].generation}}</td>
+                </tr>
+                <tr>
+                  <th class="text-center">Habitat :</th>
+                  <td>{{store.getters.getCollection[msg].habitat}}</td>
+                </tr>
+              </tbody>
+            </table>
+            </div>
+            
+            </div>
+
             <button type="button" class="btn btn-secondary"><router-link to="/accueil">Aller à l'accueil   </router-link></button>
         </div>
     </main>
