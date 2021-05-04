@@ -3,6 +3,7 @@ import PeuImporte from '../components/Peuimporte.vue';
 import HelloWorld from '../components/HelloWorld.vue';
 import Accueil from '../components/Accueil.vue';
 import Pokemon from '../components/Pokemon.vue';
+import Recherche from '../components/Recherche.vue';
 
 const routes = [
     {
@@ -21,6 +22,11 @@ const routes = [
         path: '/pokemon/:id',
         name: 'pokemon',
         component: Pokemon,
+    },
+    {
+        path: '/recherche/:id',
+        name: 'recherche',
+        component: Recherche,
     },
 ];
 

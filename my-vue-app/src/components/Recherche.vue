@@ -1,7 +1,7 @@
 <template>
 <div>
-  <h1>{{this.pokemon.name }}</h1>
-  <p><img :src="this.pokemon.sprite" /></p>
+  <h1>{{this.pokemon.value.name }}</h1>
+  <p><img :src="this.pokemon.value.sprite" /></p>
   <!--<p><button @click="collect">Test</button></p>-->
   </div>
 </template>
@@ -15,19 +15,19 @@ export default defineComponent({
   setup() {
     const store = useStore();
     const pokemon = ref({});
-    const numero = 1;
+    const nom = "pikachu";
 
     return {
       store,
-      numero,
+      nom,
       pokemon,
     };
   },
   methods: {
-    async rechercher(numero) {
+    async rechercher(nom) {
       const newPokemon = { id: null, name: null, sprite: null };
       await axios
-        .get("https://pokeapi.co/api/v2/pokemon/" + numero)
+        .get("https://pokeapi.co/api/v2/pokemon/" + nom)
         .then(function (response) {
           newPokemon.sprite =
             response.data.sprites.other?.["official-artwork"].front_default;
@@ -40,7 +40,7 @@ export default defineComponent({
           console.error(error);
         });
       await axios
-        .get("https://pokeapi.co/api/v2/pokemon-species/" + numero)
+        .get("https://pokeapi.co/api/v2/pokemon-species/" + nom)
         .then(function (response) {
           newPokemon.name = response.data.names[4].name;
           newPokemon.genus = response.data.genera[3].genus;
@@ -52,9 +52,6 @@ export default defineComponent({
         });
         this.pokemon = newPokemon;
     },
-    suivant() {
-      this.aled(this.store, this.store.getters.getNbr);
-    },
   },
 
   created() {
@@ -65,15 +62,7 @@ export default defineComponent({
   },
   methods: {
     recupId() {
-      this.msg = this.$route.params.id - 1;
-      if (this.store.getters.getCollection[this.msg] != null) {
-        this.$router.push({ name: "pokemon", params: { id: this.msg } });
-      } else {
-        rechercher(this.msg);
-      }
-    },
-    collect() {
-      console.log(this.store.getters.getCollection[this.msg]);
+      this.nom = this.$route.params.id 
     },
   },
 });
