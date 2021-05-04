@@ -44,11 +44,11 @@ export default defineComponent({
   },
   methods: {
     recupId () {
-    this.msg =  this.$route.params.id -1
+      this.msg =  this.$route.params.id -1
     },
     collect () {
         console.log(this.store.getters.getCollection[this.msg])
-    }
+    },
   }
 });
 </script>

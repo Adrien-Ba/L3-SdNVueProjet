@@ -25,7 +25,7 @@ export default defineComponent({
   setup() {
     const collection = ref([]);
     const store = useStore();
-    var nbr = 0;
+    const nbr = 0;
 
     return {
       collection,
@@ -68,16 +68,18 @@ export default defineComponent({
         console.log("store" + store.getters.getCollection);
         //this.type = typeTmp;
       }
+      store.commit("ajoutNbr");
     },
     suivant() {
-      this.nbr += 10;
-      this.aled(this.store, this.nbr);
+      this.aled(this.store, this.store.getters.getNbr);
     },
   },
 
-  beforeMount() {
-    console.log(this.nbr);
-    this.aled(this.store, this.nbr);
+  created() {
+    console.log(this.store.getters.getNbr);
+    if(this.store.getters.getNbr==0) {
+      this.aled(this.store, this.store.getters.getNbr);
+    }
   },
 });
 </script>
