@@ -10,7 +10,7 @@ Le but de ce projet est de présenter un pokédex qui répertorie tous les poké
 La page d'accueil charge les pokémons par groupe de 10, et en charge 10 supplémentaires quand l'utilisateur appuie sur le bouton suivant.<br/>
 Tous les pokémons qui ont été chargés sont stockés dans un store, afin de permettre un affichage plus rapide, et éviter de faire de nombreuses requêtes pour rien. L'affichage d'informations supplémentaires sur un pokémon ne nécésite pas de requête supplémentaires car toutes les informations sont déjà stockées dans le store. 
 Une variable présente dans le store permet également de savoir combien de pokémons ont été chargés en local dans la liste. 
-La page index permet d'avoir le nom en anglais et français d'un pokémon afin d'utiliser le champ de recherche. (requêtes non stockées dans le store)
+La page index permet d'avoir le nom en anglais et français d'un pokémon afin d'utiliser le champ de recherche. 
 
 
 ## Autres classes
