@@ -4,9 +4,7 @@
             <h1>{{store.getters.getCollection[msg].name}}</h1>
             <p><img :src="store.getters.getCollection[msg].sprite"></p>
             <!--<p><button @click="collect">Test</button></p>-->
-
-                    <!--<li v-for="item in store.getters.getCollection.types" :key="item.type">{{item.type}}</li>-->
-
+           <li v-for="type in store.getters.getCollection[msg].types" :key="type.name">{{type.type.name}}</li>
             <div class="row">
             <div class="col-6">
             <table class="table">
@@ -31,11 +29,11 @@
               <tbody>
                 <tr>
                   <th class="text-center">Genre :</th>
-                  <td>{{store.getters.getCollection[msg].id}}</td>
+                  <td>{{store.getters.getCollection[msg].genus}}</td>
                 </tr>
                 <tr>
                   <th class="text-center">Génération :</th>
-                  <td>{{store.getters.getCollection[msg].generation}}</td>
+                  <td>{{store.getters.getCollection[msg].generation.toUpperCase()}}</td>
                 </tr>
                 <tr>
                   <th class="text-center">Habitat :</th>

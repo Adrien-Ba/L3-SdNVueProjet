@@ -1,8 +1,53 @@
 <template>
-<div>
-  <h1>{{pokemon.name}}</h1>
-  <p><img :src="pokemon.sprite" /></p>
-  </div>
+   <main role="main" class="container">
+        <div class="jumbotron">
+            <h1>{{pokemon.name}}</h1>
+            <p><img :src="pokemon.sprite"></p>
+            <!--<p><button @click="collect">Test</button></p>-->
+           <li v-for="type in pokemon.types" :key="type.name">{{type.type.name}}</li>
+            <div class="row">
+            <div class="col-6">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <th class="text-center">Id :</th>
+                  <td>{{pokemon.id}}</td>
+                </tr>
+                <tr>
+                  <th class="text-center">Taille :</th>
+                  <td>{{pokemon.height}}0 cm</td>
+                </tr>
+                <tr>
+                  <th class="text-center">Poids :</th>
+                  <td>{{pokemon.weight}}0 g</td>
+                </tr>
+              </tbody>
+            </table>
+            </div>
+            <div class="col-6">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <th class="text-center">Genre :</th>
+                  <td>{{pokemon.genus}}</td>
+                </tr>
+                <tr>
+                  <th class="text-center">Génération :</th>
+                  <td>{{pokemon.generation.toUpperCase()}}</td>
+                </tr>
+                <tr>
+                  <th class="text-center">Habitat :</th>
+                  <td>{{pokemon.habitat}}</td>
+                </tr>
+              </tbody>
+            </table>
+            </div>
+            
+            </div>
+
+            <button type="button" class="btn btn-secondary"><router-link to="/accueil">Aller à l'accueil   </router-link></button>
+        </div>
+    </main>
 </template>
 
 <script>
@@ -47,11 +92,19 @@ export default defineComponent({
           newPokemon.name = response.data.names[4].name;
           newPokemon.genus = response.data.genera[3].genus;
           newPokemon.generation = response.data.generation.name;
-          newPokemon.habitat = response.data.habitat.name;
+          newPokemon.location = response.data.habitat.name;
         })
         .catch(function (error) {
           console.error(error);
         });
+        await axios
+          .get("https://pokeapi.co/api/v2/pokemon-habitat/"+newPokemon.location)
+          .then(function (response) {
+            newPokemon.habitat = response.data.names[0].name;
+          })
+          .catch(function (error) {
+            console.error(error);
+          });
         this.pokemon = newPokemon;
     },
      recupNom() {
