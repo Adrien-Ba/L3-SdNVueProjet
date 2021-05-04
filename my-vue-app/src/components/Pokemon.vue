@@ -1,6 +1,8 @@
 <template>
       <main role="main" class="container">
+        <br/>
         <div class="jumbotron">
+          
             <h1>{{store.getters.getCollection[msg].name}}</h1>
             <p><img :src="store.getters.getCollection[msg].sprite"></p>
            <div class="row">

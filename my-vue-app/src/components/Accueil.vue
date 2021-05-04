@@ -1,6 +1,7 @@
 <template>
 <div>
   <main role="main " class="container">
+        <br/>
         <div class="jumbotron">
             <h1>Bienvenue dans le Pokédex</h1>
             <p>

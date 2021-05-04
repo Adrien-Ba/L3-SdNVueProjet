@@ -1,6 +1,7 @@
 <template>
 
   <div class="container">
+    <br/>
     <div class="jumbotron">
             <p>
                 Cette page a été réalisée afin de trouver les noms des pokémons en anglais, pour pouvoir utiliser le champ de recherche<br/>

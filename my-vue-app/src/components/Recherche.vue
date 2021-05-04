@@ -1,5 +1,6 @@
 <template>
    <main role="main" class="container">
+     <br/>
         <div class="jumbotron">
             <h1>{{pokemon.name}}</h1>
             <p><img :src="pokemon.sprite"></p>
