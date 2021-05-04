@@ -17,22 +17,28 @@
         </div>
     </main>
 
-  <div class="container my-5">
-
-    <div class="row">
-    <div v-for="item in store.getters.getCollection" :key="item.id" class="card col-sm-3" >
-      <img :src="item.sprite" class="card-img-top"/>
-      <div class="card-body">
-        <h5 class="card-title">{{ item.id }} : {{ item.name }}</h5>
-        <router-link class="btn btn-primary" :to="{ name: 'pokemon', params: { id: item.id } }">Détails ...</router-link>
+    <div class="container my-5">
+      <div class="row">
+        <div
+          v-for="item in store.getters.getCollection"
+          :key="item.id"
+          class="card col-sm-3"
+        >
+          <img :src="item.sprite" class="card-img-top" />
+          <div class="card-body">
+            <h5 class="card-title">{{ item.id }} : {{ item.name }}</h5>
+            <router-link
+              class="btn btn-primary"
+              :to="{ name: 'pokemon', params: { id: item.id } }"
+              >Détails ...</router-link
+            >
+          </div>
+        </div>
       </div>
-    </div>
-    </div>
 
-
-    <button @click="suivant">Suivant</button>
+      <button @click="suivant">Suivant</button>
+    </div>
   </div>
-</div>
 </template>
 
 <script>
@@ -64,8 +70,8 @@ export default defineComponent({
             newPokemon.height = response.data.height;
             newPokemon.weight = response.data.weight;
             newPokemon.types = response.data.types;
-            console.log("type"+ response.data.types);
-            console.log("type"+ newPokemon.types[0].type.name);
+            console.log("type" + response.data.types);
+            console.log("type" + newPokemon.types[0].type.name);
             newPokemon.id = response.data.id;
           })
           .catch(function (error) {
@@ -82,8 +88,10 @@ export default defineComponent({
           .catch(function (error) {
             console.error(error);
           });
-          axios
-          .get("https://pokeapi.co/api/v2/pokemon-habitat/"+newPokemon.location)
+        axios
+          .get(
+            "https://pokeapi.co/api/v2/pokemon-habitat/" + newPokemon.location
+          )
           .then(function (response) {
             newPokemon.habitat = response.data.names[0].name;
           })
@@ -92,10 +100,8 @@ export default defineComponent({
           });
 
         store.commit("ajout", newPokemon);
-        //console.log(collection);
 
         console.log("store" + store.getters.getCollection);
-        //this.type = typeTmp;
       }
       store.commit("ajoutNbr");
     },
@@ -106,7 +112,7 @@ export default defineComponent({
 
   created() {
     console.log(this.store.getters.getNbr);
-    if(this.store.getters.getNbr==0) {
+    if (this.store.getters.getNbr == 0) {
       this.cherche(this.store, this.store.getters.getNbr);
     }
   },

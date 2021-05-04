@@ -59,41 +59,43 @@
 
             <button type="button" class="btn btn-secondary"><router-link to="/accueil">Aller à l'accueil   </router-link></button>
         </div>
-    </main>
+      </div>
+
+      <button type="button" class="btn btn-secondary">
+        <router-link to="/accueil">Aller à l'accueil </router-link>
+      </button>
+    </div>
+  </main>
 </template>
 
 <script lang="ts">
-import { ref, defineComponent } from 'vue'
-import { useStore } from 'vuex'
+import { ref, defineComponent } from "vue";
+import { useStore } from "vuex";
 
 export default defineComponent({
   setup() {
-    const store = useStore()
+    const store = useStore();
     const msg = 1;
-
-
-
-
 
     return {
       msg,
-      store
+      store,
     };
   },
   created() {
-    this.recupId()
+    this.recupId();
   },
   watch: {
-    '$route':'recupId'
+    $route: "recupId",
   },
   methods: {
-    recupId () {
-      this.msg =  this.$route.params.id -1
+    recupId() {
+      this.msg = this.$route.params.id - 1;
     },
-    collect () {
-        console.log(this.store.getters.getCollection[this.msg])
+    collect() {
+      console.log(this.store.getters.getCollection[this.msg]);
     },
-  }
+  },
 });
 </script>
 

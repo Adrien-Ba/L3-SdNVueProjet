@@ -1,12 +1,23 @@
 <template>
   <div>
-    <br/>
-    <p>Page de dev : affichage des données d'un pokémon a partir de son nom (anglais en minuscules)</p>
-    <input type="test" v-model="nomPkmn"/>
-    
+    <br />
+    <p>
+      Page de dev : affichage des données d'un pokémon a partir de son nom
+      (anglais en minuscules)
+    </p>
+    <input type="test" v-model="nomPkmn" />
+
     <table>
-      <tr>{{listeNomPkmn?.name}}</tr>
-      <tr>{{listeNomPkmn?.url}}</tr>
+      <tr>
+        {{
+          listeNomPkmn?.name
+        }}
+      </tr>
+      <tr>
+        {{
+          listeNomPkmn?.url
+        }}
+      </tr>
     </table>
     <button @click="description">Afficher</button>
     <span v-if="showInfo">
@@ -14,27 +25,27 @@
       <table>
         <tr>
           <td>Id : {{ pokemonDesc?.id }}</td>
-          <td>Taille : {{ pokemonDesc?.height}}</td>
-          <td>Poids : {{ pokemonDesc?.weight}}</td>
+          <td>Taille : {{ pokemonDesc?.height }}</td>
+          <td>Poids : {{ pokemonDesc?.weight }}</td>
           <td>Genre : {{ genera }}</td>
           <td>Type : {{ type }}</td>
         </tr>
       </table>
-      <img :src="sprite"/>
+      <img :src="sprite" />
     </span>
   </div>
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue';
-import axios from 'axios';
+import { defineComponent, ref } from "vue";
+import axios from "axios";
 
 export default defineComponent({
   setup() {
     const cards = ref({});
-    const nomPkmn = ref('');
+    const nomPkmn = ref("");
     axios
-      .get('https://pokeapi.co/api/v2/pokemon?limit=898')
+      .get("https://pokeapi.co/api/v2/pokemon?limit=898")
       .then(function (response) {
         cards.value = response.data;
       })
@@ -42,13 +53,12 @@ export default defineComponent({
         console.error(error);
       });
 
-
     return {
       cards,
       nomPkmn,
     };
   },
-  data: function() {
+  data: function () {
     return {
       pokemonDesc: Object,
       sprite: String,
@@ -57,43 +67,46 @@ export default defineComponent({
       type: String,
       showInfo: false,
       post: null,
-    }
+    };
   },
   computed: {
     collectionCards() {
-      return this.cards?.['results'];
+      return this.cards?.["results"];
     },
     listeNomPkmn() {
-      return this.collectionCards?.find(card => card.name.toLowerCase() === this.nomPkmn.toLowerCase());
+      return this.collectionCards?.find(
+        (card) => card.name.toLowerCase() === this.nomPkmn.toLowerCase()
+      );
     },
   },
   methods: {
     async description() {
       const pokemon = ref({});
-      const spriteTmp = ref('');
-      const speciesTmp = ref('');
-      const generaTmp = ref('');
-      const typeTmp = ref('');
+      const spriteTmp = ref("");
+      const speciesTmp = ref("");
+      const generaTmp = ref("");
+      const typeTmp = ref("");
 
       axios
-      .get(this.listeNomPkmn?.url)
-      .then(function (response) {
-        pokemon.value = response.data;
-        spriteTmp.value = response.data.sprites.other?.['official-artwork'].front_default;
-        speciesTmp.value = response.data.species.url;
-        typeTmp.value = response.data.types?.[0].type.name;
-        axios
-      .get(speciesTmp.value)
-      .then(function (response) {
-        generaTmp.value = response.data.genera?.['3'].genus;
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
+        .get(this.listeNomPkmn?.url)
+        .then(function (response) {
+          pokemon.value = response.data;
+          spriteTmp.value =
+            response.data.sprites.other?.["official-artwork"].front_default;
+          speciesTmp.value = response.data.species.url;
+          typeTmp.value = response.data.types?.[0].type.name;
+          axios
+            .get(speciesTmp.value)
+            .then(function (response) {
+              generaTmp.value = response.data.genera?.["3"].genus;
+            })
+            .catch(function (error) {
+              console.error(error);
+            });
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
       this.sprite = spriteTmp;
       this.pokemonDesc = pokemon;
       this.tmp = speciesTmp;
