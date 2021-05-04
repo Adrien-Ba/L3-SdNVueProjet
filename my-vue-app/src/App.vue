@@ -29,8 +29,9 @@
           -->
         </ul>
         <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Nom de pokémon ..." aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button><!--A Implémenter-->
+          <input class="form-control mr-sm-2" type="text" v-model="nomPokemon" placeholder="Nom de pokémon ..." aria-label="Search">
+          <!--<router-link class="btn btn-outline-success my-2 my-sm-0" :to="{ name: 'recherche', params: { id: {{getNom}} } }">Rechercher</router-link>-->
+          <button class="btn btn-outline-success my-2 my-sm-0" @click="rechercher" type="submit">Rechercher</button>
         </form>
       </div>
     </nav>
@@ -70,7 +71,14 @@ export default defineComponent({
   name: 'App',
   components: {
     PeuImporte,
+  },
+  methods: {
+    rechercher() {
+      this.$router.push('/recherche/'+this.nomPokemon);
+      this.nomPokemon = '';
+    }
   }
+
 })
 
 
