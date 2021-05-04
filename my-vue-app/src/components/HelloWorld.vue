@@ -1,35 +1,36 @@
 <template>
   <div>
-    <br/>
+    <br />
     <p>Page de dev : compteur</p>
-    <p>{{count}}</p>
+    <p>{{ count }}</p>
     <button @click="description">Inrementer</button>
   </div>
 </template>
 
 <script lang="ts">
-import { ref, defineComponent } from 'vue'
-import { useStore } from 'vuex'
+import { ref, defineComponent } from "vue";
+import { useStore } from "vuex";
 export default defineComponent({
-  name: 'HelloWorld',
+  name: "HelloWorld",
   props: {
     msg: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   setup: () => {
-    const store = useStore() 
-    return {store}
-    
+    const store = useStore();
+    return { store };
   },
   computed: {
-    count() {return this.store.getters.getcount}
+    count() {
+      return this.store.getters.getcount;
+    },
   },
   methods: {
     description() {
-      this.$store.commit('increment')
-    }
-  }
-})
+      this.$store.commit("increment");
+    },
+  },
+});
 </script>

@@ -1,10 +1,10 @@
 <template>
-
   <div class="container">
     <div class="jumbotron">
-            <p>
-                Cette page a été réalisée afin de trouver les noms des pokémons en anglais, pour pouvoir utiliser le champ de recherche<br/>
-            </p>
+      <p>
+        Cette page a été réalisée afin de trouver les noms des pokémons en
+        anglais, pour pouvoir utiliser le champ de recherche<br />
+      </p>
     </div>
 
     <div class="row">
@@ -19,56 +19,62 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="pokemon in collection" :key="pokemon"><td>{{pokemon.id}}</td><td>{{pokemon.name}}</td><td>{{pokemon.nom}}</td><td>{{pokemon.genus}}</td></tr>
+            <tr v-for="pokemon in collection" :key="pokemon">
+              <td>{{ pokemon.id }}</td>
+              <td>{{ pokemon.name }}</td>
+              <td>{{ pokemon.nom }}</td>
+              <td>{{ pokemon.genus }}</td>
+            </tr>
           </tbody>
         </table>
-        <li v-for="pokemon in collection" :key="pokemon">{{pokemon.id}} {{pokemon.name}} {{pokemon.nom}} {{pokemon.genus}}</li>
+        <li v-for="pokemon in collection" :key="pokemon">
+          {{ pokemon.id }} {{ pokemon.name }} {{ pokemon.nom }}
+          {{ pokemon.genus }}
+        </li>
       </div>
-   </div>   
+    </div>
   </div>
 </template>
 
 <script>
-
 import { defineComponent, ref } from "vue";
 import axios from "axios";
 
 export default defineComponent({
-  data: function() {
+  data: function () {
     return {
-      pokemon: { id: String, name: String, sprite: String},
+      pokemon: { id: String, name: String, sprite: String },
       collection: ref([]),
-    }
+    };
   },
   methods: {
     async creerTableau() {
-        for(let i = 1; i <= 898; i++) {
+      for (let i = 1; i <= 898; i++) {
         const newPokemon = { id: null, name: null, sprite: null };
         await axios
-            .get("https://pokeapi.co/api/v2/pokemon/" + i)
-            .then(function (response) {
+          .get("https://pokeapi.co/api/v2/pokemon/" + i)
+          .then(function (response) {
             newPokemon.id = response.data.id;
-            
-            })
-            .catch(function (error) {
+          })
+          .catch(function (error) {
             console.error(error);
-            });
+          });
         await axios
-            .get("https://pokeapi.co/api/v2/pokemon-species/" + i)
-            .then(function (response) {
+          .get("https://pokeapi.co/api/v2/pokemon-species/" + i)
+          .then(function (response) {
             newPokemon.nom = response.data.names[4].name;
             newPokemon.name = response.data.names[8].name;
             newPokemon.genus = response.data.genera[3].genus;
-            })
-            .catch(function (error) {
-            console.error(error)
-            });
-            this.collection.push(newPokemon);
-        }
+          })
+          .catch(function (error) {
+            console.error(error);
+          });
+        this.collection.push(newPokemon);
+      }
     },
   },
   beforeMount() {
-   this.creerTableau();
+    this.creerTableau();
   },
 });
 </script>

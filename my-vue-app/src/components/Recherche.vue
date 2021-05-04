@@ -1,63 +1,66 @@
 <template>
-   <main role="main" class="container">
-        <div class="jumbotron">
-            <h1>{{pokemon.name}}</h1>
-            <p><img :src="pokemon.sprite"></p>
-            <div class="row">
-             <div class="col">
-               <table class="table">
-              <tbody>
-                <tr>
-                  <th class="text-center">Type(s) :</th>
-                  <td v-for="type in pokemon.types" :key="type.name">{{type.type.name}}</td>
-                </tr>
-              </tbody>
-            </table>
-             </div>
-           </div>
-            <div class="row">
-            <div class="col-6">
-            <table class="table">
-              <tbody>
-                <tr>
-                  <th class="text-center">Id :</th>
-                  <td>{{pokemon.id}}</td>
-                </tr>
-                <tr>
-                  <th class="text-center">Taille :</th>
-                  <td>{{pokemon.height}}0 cm</td>
-                </tr>
-                <tr>
-                  <th class="text-center">Poids :</th>
-                  <td>{{pokemon.weight}}0 g</td>
-                </tr>
-              </tbody>
-            </table>
-            </div>
-            <div class="col-6">
-            <table class="table">
-              <tbody>
-                <tr>
-                  <th class="text-center">Genre :</th>
-                  <td>{{pokemon.genus}}</td>
-                </tr>
-                <tr>
-                  <th class="text-center">Génération :</th>
-                  <td>{{pokemon.generation}}</td>
-                </tr>
-                <tr>
-                  <th class="text-center">Habitat :</th>
-                  <td>{{pokemon.habitat}}</td>
-                </tr>
-              </tbody>
-            </table>
-            </div>
-            
-            </div>
-
-            <button type="button" class="btn btn-secondary"><router-link to="/accueil">Aller à l'accueil   </router-link></button>
+  <main role="main" class="container">
+    <div class="jumbotron">
+      <h1>{{ pokemon.name }}</h1>
+      <p><img :src="pokemon.sprite" /></p>
+      <div class="row">
+        <div class="col">
+          <table class="table">
+            <tbody>
+              <tr>
+                <th class="text-center">Type(s) :</th>
+                <td v-for="type in pokemon.types" :key="type.name">
+                  {{ type.type.name }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-    </main>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <table class="table">
+            <tbody>
+              <tr>
+                <th class="text-center">Id :</th>
+                <td>{{ pokemon.id }}</td>
+              </tr>
+              <tr>
+                <th class="text-center">Taille :</th>
+                <td>{{ pokemon.height }}0 cm</td>
+              </tr>
+              <tr>
+                <th class="text-center">Poids :</th>
+                <td>{{ pokemon.weight }}0 g</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-6">
+          <table class="table">
+            <tbody>
+              <tr>
+                <th class="text-center">Genre :</th>
+                <td>{{ pokemon.genus }}</td>
+              </tr>
+              <tr>
+                <th class="text-center">Génération :</th>
+                <td>{{ pokemon.generation }}</td>
+              </tr>
+              <tr>
+                <th class="text-center">Habitat :</th>
+                <td>{{ pokemon.habitat }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-secondary">
+        <router-link to="/accueil">Aller à l'accueil </router-link>
+      </button>
+    </div>
+  </main>
 </template>
 
 <script>
@@ -75,10 +78,10 @@ export default defineComponent({
       nom,
     };
   },
-  data: function() {
+  data: function () {
     return {
-      pokemon: { id: String, name: String, sprite: String},
-    }
+      pokemon: { id: String, name: String, sprite: String },
+    };
   },
   methods: {
     async rechercher(nom) {
@@ -103,40 +106,36 @@ export default defineComponent({
           newPokemon.genus = response.data.genera[3].genus;
           newPokemon.generation = response.data.generation.name;
           newPokemon.location = response.data.habitat.name;
-
-         
         })
         .catch(function (error) {
           console.error(error);
         });
-        if(newPokemon.location != null) {
-
-        
+      if (newPokemon.location != null) {
         await axios
-          .get("https://pokeapi.co/api/v2/pokemon-habitat/"+newPokemon.location)
+          .get(
+            "https://pokeapi.co/api/v2/pokemon-habitat/" + newPokemon.location
+          )
           .then(function (response) {
             newPokemon.habitat = response.data.names[0].name;
           })
           .catch(function (error) {
             console.error(error);
           });
-        }
-        this.pokemon = newPokemon;
-        
+      }
+      this.pokemon = newPokemon;
     },
-     recupNom() {
-      this.nom = this.$route.params.id
-      this.rechercher(this.nom)
+    recupNom() {
+      this.nom = this.$route.params.id;
+      this.rechercher(this.nom);
     },
-
   },
   created() {
     this.recupNom();
-    console.log(this.nom)
+    console.log(this.nom);
     this.rechercher(this.nom);
   },
   watch: {
-    '$route':"recupNom"
+    $route: "recupNom",
   },
 });
 </script>
